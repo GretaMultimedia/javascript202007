@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Addition</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+        
+        * {
+            margin:0;
+            padding:0;
+        }
+    
+        :root{
+            font-family: 'Lato', sans-serif;   
+        }
+        
+        main {
+            box-sizing: border-box;
+            height:100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        main *{
+            margin:auto;
+            
+        }
+        
+        main #calculatrice h1{
+            text-align: center;
+            margin-bottom:1.5rem;   
+        }
+        
+        main #calculatrice h1::first-letter{
+            color:crimson;
+        }
+        
+        #calculatrice input{
+            width:5em;
+            text-align: center;
+        
+        }
+        
+    </style>
+    <script>
+    
+        function calculer(){
+            let nb1=document.querySelector("input[name='nb1']").value;
+            let nb2=document.querySelector("input[name='nb2']").value;
+            
+            console.log("nb1 vaut " + nb1 +" et nb2 vaut "+nb2);
+            
+            let res= Number(nb1) + Number(nb2) ;
+            
+            console.log("res vaut " + res);
+            
+            // afficher le résultat en rouge si impaire et en vert si paire
+            if ( res % 2 == 0){
+                document.querySelector("span#resultat").style.color="green";
+            }
+            else{
+                document.querySelector("span#resultat").style.color="crimson";
+            }
+            
+            document.querySelector("span#resultat").innerHTML=res;
+            
+            
+            
+            
+            
+        }
+
+    </script>
+</head>
+
+<body>
+    <main>
+        
+        <div id="calculatrice">
+            <h1>Addition</h1>
+            <input type="text" name="nb1"> + <input type="text" name="nb2">
+            <button onclick="calculer()">=</button> <span id="resultat"></span>
+        </div>
+        
+    </main>
+    
+</body>
+</html>

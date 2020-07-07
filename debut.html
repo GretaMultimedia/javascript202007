@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma première page avec du js</title>
+    <style>
+        p#reponse:empty {
+            border:none;
+        }
+        p#reponse {
+            border:1px solid black;
+        }
+    </style>
+    
+    
+    <script>
+    
+        function afficheBonjour(){
+            
+            let nom= document.querySelector("input[name='nom']").value;
+            
+            
+            document.getElementById('reponse').innerHTML='Bonjour ' + nom;
+            document.querySelector("p#reponse").innerHTML += " !!!!!";
+            
+            document.querySelector("p#reponse").style.backgroundColor="lightgreen";
+            
+            
+        }
+    
+    
+    </script>
+</head>
+<body>
+   
+    Entrez votre nom :<input type="text" name="nom">
+    
+    <button onclick="afficheBonjour()"  > Dire bonjour</button>
+    
+    <p id="reponse">ligne 1 <br> ligne2</p>
+    
+   
+    
+</body>
+</html>

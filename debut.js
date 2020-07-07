@@ -1,0 +1,1 @@
+document.write("Petit bonjour du fichier inclus");

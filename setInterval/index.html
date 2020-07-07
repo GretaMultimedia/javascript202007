@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setInterval</title>
+    
+     <script>
+         var cpt=0;
+         var inter=null;
+         
+         var afficherPoint=function(){
+            if (cpt % 5 == 0){ 
+                document.querySelector("main").innerHTML+=" "+cpt;  
+            }
+            else{
+                document.querySelector("main").innerHTML+=" ."; 
+            }
+             
+            cpt++; 
+         }
+         
+         var start=function(){
+             if (inter === null ){
+                inter=setInterval(afficherPoint,1000);
+             }
+             else{
+                console.log("timer deja en cours");   
+             }
+         }
+         
+         var stop=function(){
+             clearInterval(inter);
+             inter=null;
+         }
+         
+        
+         var init=function(){
+            
+            document.querySelector("#start").onclick=start; 
+             document.querySelector("#stop").onclick=stop; 
+              
+             
+         }
+         
+         window.onload=init;
+    </script>  
+    
+ 
+    
+    
+</head>
+
+<body>
+    <h1>setInterval</h1>
+    <nav>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+    </nav>
+    <main></main>
+    
+    
+</body>
+</html>

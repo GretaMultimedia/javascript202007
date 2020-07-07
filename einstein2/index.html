@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einstein</title>
+    <style>
+        
+            button{
+                background-color: green;
+                color:white;
+                border:solid 1px grey;
+            }
+    
+    </style>
+    
+    <script>
+        /*
+        function changeImg(){
+            
+            
+            if (document.querySelector("img#einsteinImg").src.indexOf("normal.jpg") > -1) {
+            
+                document.querySelector("img#einsteinImg").src="imgs/langue.jpg";
+                document.querySelector("button#switchBtn").innerHTML="Range ça malpoli !!!";
+                document.querySelector("button#switchBtn").style.backgroundColor="red";
+                
+            }
+            else{
+                document.querySelector("img#einsteinImg").src="imgs/normal.jpg";  
+                document.querySelector("button#switchBtn").innerHTML="Tirer la langue";
+                document.querySelector("button#switchBtn").style.backgroundColor="green";
+            }
+        }
+    */
+        
+        function changeImg(){
+            
+            let image=document.querySelector("img#einsteinImg");
+            let btn=document.querySelector("button#switchBtn");
+            
+            if (image.src.indexOf("normal.jpg") > -1) {
+            
+                image.src="imgs/langue.jpg";
+                btn.innerHTML="Range ça malpoli !!!";
+                btn.style.backgroundColor="red";
+                
+            }
+            else{
+                image.src="imgs/normal.jpg";  
+                btn.innerHTML="Tirer la langue";
+                btn.style.backgroundColor="green";
+            }
+        }
+        
+    
+    </script>
+    
+</head>
+
+<body>
+    
+    <h1> Einstein </h1>
+    <div> 
+    <img id="einsteinImg" src="imgs/normal.jpg" alt=''><br>
+    <button id="switchBtn" onclick="changeImg()">Tirer la langue</button>
+    </div>
+</body>
+</html>
