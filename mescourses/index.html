@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste de Courses</title>
+    
+    <script>
+    
+        var supprimer=function(evt){
+          
+            console.log("supprimer");
+            evt.currentTarget.parentNode.removeChild(evt.currentTarget);
+            
+        }
+        
+        var ajouter=function(evt){
+            
+            evt.preventDefault(); //previent l'envoi du form vers la page d'action. 
+            
+            let article=document.querySelector("#listecourses form input[name='articleChp']").value;
+            
+            if(article==''){
+                console.log("vide")
+                return false;
+            }
+            
+            console.log(article);
+            
+            let newLI=document.createElement("li"); //creation d'un nouveau LI
+            newLI.innerHTML=article; // remplissage du nouveau LI avec la valeur saisie dans le champ
+            
+            newLI.addEventListener("dblclick",supprimer);
+            
+            
+            document.querySelector("#listecourses ul").appendChild(newLI); //ajout du Li en fin de liste
+            
+            document.querySelector("#listecourses form input[name='articleChp']").value='';
+            
+            
+            
+        }
+        
+        var init=function(){
+            document.querySelector("#listecourses form").addEventListener("submit",ajouter);
+            
+        }
+    
+    
+    
+        addEventListener("DOMContentLoaded",init);
+    
+    </script>
+    
+</head>
+
+<body>
+    
+    <header>
+        <h1>Ma liste de courses</h1>
+    </header>
+    <main>
+    
+        <div id="listecourses">
+            <form action="ajouter.php">
+                <input type="text" name="articleChp"> <button>Ajouter</button>
+            </form>
+        
+            <ul></ul>
+        </div>
+    
+    </main>
+    
+</body>
+</html>

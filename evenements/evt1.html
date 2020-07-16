@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evenements</title>
+    
+    
+    <script>
+    
+    
+        
+        var eltClicked=function(evt){
+            
+            evt.currentTarget.innerHTML="*"+evt.currentTarget.innerHTML;
+            
+            console.log(evt);
+               
+        }
+    
+        
+        var init=function(){
+            document.querySelector("body>DIV:first-of-type").innerHTML="Page chargée";  
+            
+            document.querySelector("body>DIV:first-of-type").addEventListener("click",eltClicked);
+            document.querySelector("body>DIV:nth-of-type(2)").addEventListener("click",eltClicked);
+        }
+        
+    
+        window.addEventListener("DOMContentLoaded",init);
+    
+    
+    </script>
+    
+
+    
+    
+    
+    
+</head>
+
+<body>
+    
+    <div>Chargement....</div>
+    <div>div2</div>
+    
+    
+    
+</body>
+</html>

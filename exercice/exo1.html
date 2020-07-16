@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js exo</title>
+    
+    <script>
+        
+        //var direBonjour=function(){
+        function direBonjour(){
+            
+            let output=document.querySelector("#output");
+            let nom=document.querySelector("input[name='nom']").value;
+            
+            
+            if (nom == "" ){
+               output.innerHTML="Bonjour tout le monde!";  
+                output.style.color="red";
+            }
+            else{
+               output.innerHTML="Bonjour "+nom+"!";   
+                output.style.color="green";
+            }
+                 
+        }
+       
+        
+        var alerter= function(){
+                alert('Bouton clické');
+                 document.querySelector("#bonjourBtn").removeEventListener('click',alerter);                
+        }
+                               
+        
+        
+       //var init=function(){    
+       function init(){
+            document.querySelector("#bonjourBtn").addEventListener('click',direBonjour);
+           document.querySelector("#bonjourBtn").addEventListener('click',alerter);
+           
+        }
+                
+        window.addEventListener("DOMContentLoaded",init);
+        
+    
+    </script>
+    
+    
+</head>
+
+<body>
+    
+    <p>Entrez votre nom: <input type="text" name="nom" value=""></p>
+    
+    <div id="output">ici s'affichera le texte</div>
+    
+    <button id="bonjourBtn">Dire bonjour</button>
+    
+  
+    
+    
+</body>
+</html>

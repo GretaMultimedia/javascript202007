@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>evt3</title>
+</head>
+
+    <script>
+    
+        var afficherBonjour=function(evt){
+            evt.preventDefault();
+            alert("Bonjour "+document.querySelector("input[name='nom']").value);
+        }
+    
+        var init=function(){
+            document.querySelector("form").addEventListener("submit",afficherBonjour);
+        }
+    
+        window.addEventListener("DOMContentLoaded",init);
+    
+    </script>
+    
+    
+    
+<body>
+    
+    <form>
+        
+        Entrez votre nom: <input type="text" name="nom">
+        <button type="submit">Dire bonjour</button>
+    
+    </form>
+    
+    
+    
+</body>
+</html>
