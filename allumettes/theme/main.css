@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+html{
+    font-family:lobster;
+}
+
+body{
+    text-align:center;
+}
+
+h1{
+    
+    font-size:3.5em;
+    margin-bottom:1em;  
+    
+}
+
+ul#tableDeJeu{  
+    list-style-type: none;
+    padding:0;
+    margin:0;
+    
+}
+
+li.allumette{
+    display: inline-block;
+    width:43px;
+    height:250px;
+    background:url(gfx/allumette.png) no-repeat;   
+    
+}
+
+
+button{
+    
+    padding:2px 20px;
+    background:white;
+    border:1px solid grey;
+    border-radius:10px;
+    
+}
+
+#message strong{
+    font-weight: normal;
+    color:red;
+}

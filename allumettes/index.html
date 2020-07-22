@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="theme/main.css">
+
+
+    <title>Allumettes</title>
+
+
+
+    <script>
+        var nbAllumettes = null; //variable globale qui garde ne nb d'allumettes en cours
+
+        var tableDeJeuRefresh = function() {
+            //effacement de la table de jeu
+            document.querySelector("#tableDeJeu").innerHTML = '';
+
+            //remplissage avec des allumettes
+            for (let x = 0; x < nbAllumettes; x++) {
+
+                let newLI = document.createElement("li");
+                newLI.setAttribute("class", "allumette");
+                document.querySelector("#tableDeJeu").appendChild(newLI);
+
+
+            }
+        }
+
+
+
+        var jouer = function(evt) {
+            console.log("jouer");
+
+            console.log(evt.currentTarget.innerHTML);
+
+            let nbAEnlever = Number(evt.currentTarget.innerHTML);
+
+            nbAllumettes -= nbAEnlever;
+            tableDeJeuRefresh();
+
+
+            if (winCheck()) {
+                document.querySelector("#controle").style.display = "none";
+                document.querySelector("#message").innerHTML = "Bravo!<br>Vous avez Gagné";
+            } else {
+                aOrdiDeJouer();
+            }
+
+        }
+
+        var aVousDeJouer = function() {
+
+            document.querySelector("#message").innerHTML = "C'est à vous de jouer.";
+            document.querySelector("#controle").style.display = "block";
+
+        }
+
+        var aOrdiDeJouer = function() {
+            document.querySelector("#message").innerHTML = "Hmmm je réfléchis...";
+            document.querySelector("#controle").style.display = "none";
+
+            setTimeout(ordiJoue, 500);
+        }
+
+
+        var winCheck = function() {
+
+            //si il reste moins de 2 allumettes renvoyer vrai sinon renvoyer faux
+            if (nbAllumettes < 2) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+
+
+        var ordiJoue = function() {
+
+            /*
+            
+            let ordiPrend=null;
+            
+            if ((nbAllumettes-1) % 4 == 0){
+               ordiPrend=Math.ceil(Math.random() * 3);
+            }
+            else{
+               ordiPrend = (nbAllumettes-1) % 4;
+            }
+            
+            */
+
+            let ordiPrend = (nbAllumettes - 1) % 4;
+            if (ordiPrend == 0) {
+                ordiPrend = Math.ceil(Math.random() * 3);
+            }
+
+
+
+            console.log(ordiPrend);
+            nbAllumettes -= ordiPrend;
+            tableDeJeuRefresh();
+            document.querySelector("#message").innerHTML = "J'en prend <strong>" + ordiPrend + "</strong>.";
+
+
+            if (winCheck()) {
+
+                document.querySelector("#message").innerHTML = "J'ai gagné !!!! Nananèreuhhh ....";
+            } else {
+                setTimeout(aVousDeJouer, 1000);
+            }
+
+
+
+        }
+
+        var startGame = function() {
+            nbAllumettes = Math.ceil(Math.random()*5)+16;
+
+            tableDeJeuRefresh();
+            
+            nbAuHasard=Math.round(Math.random()); 
+            if ( nbAuHasard == 0 ) {
+                aVousDeJouer();
+            } else {
+                aOrdiDeJouer();
+            }
+        }
+
+        var init = function() {
+
+            let boutons = document.querySelectorAll("#controle button");
+            for (let i = 0; i < boutons.length; i++) {
+                boutons[i].addEventListener("click", jouer);
+            }
+            document.querySelector("#controle").style.display = "none";
+
+            startGame()
+        }
+
+
+
+        window.addEventListener("DOMContentLoaded", init);
+
+    </script>
+
+
+</head>
+
+<body>
+    <h1>Allumettes</h1>
+
+    <ul id="tableDeJeu"></ul>
+    <p id="message">C'est à vous de jouer</p>
+    <div id="controle">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+    </div>
+
+</body>
+
+</html>

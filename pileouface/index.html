@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pile ou Face</title>
+    
+<script>
+    
+var pileOuFace=function(){
+    
+    
+   document.querySelector("#piece").innerHTML="pile"; 
+    
+}    
+ 
+var init=function(){
+    
+    
+    document.querySelector("#lancerBtn").addEventListener("click",pileOuFace)
+}
+    
+    
+addEventListener("DOMContentLoaded",init);    
+    
+    
+</script>    
+</head>
+
+<body>
+  
+    <h1>Pile ou Face</h1>
+    
+    <div id="piece"></div>
+    
+    
+    <button id="lancerBtn">Lancer</button>
+    
+    
+    
+</body>
+</html>
