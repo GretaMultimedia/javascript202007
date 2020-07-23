@@ -6,6 +6,174 @@
     <title>To Do</title>
     <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/icon?family=Material+Icons'>
     <link rel="stylesheet" type="text/css" href='theme/main.css'>
+    <script>
+        var dragElt = null;
+
+        var randomColor = function() {
+            let rouge, vert, bleu;
+
+            do {
+                rouge = Math.round(Math.random() * 255);
+                vert = Math.round(Math.random() * 255);
+                bleu = Math.round(Math.random() * 255);
+            } while (rouge < 200 && vert < 200 && bleu < 200);
+
+
+            return "rgb(" + rouge + "," + vert + "," + bleu + ")";
+        }
+
+
+        var addPostIt = function() {
+
+            let newPostIt = document.createElement("li");
+
+            newPostIt.style.backgroundColor = randomColor();
+
+
+            document.querySelector("#toDo>ul").appendChild(newPostIt);
+
+            newPostIt.addEventListener("mouseup",
+                function(evt) {
+                    evt.currentTarget.draggable = false;
+                    evt.currentTarget.contentEditable = true;
+                    evt.currentTarget.focus();
+                }
+            )
+            newPostIt.addEventListener("blur",
+                function(evt) {
+                    evt.currentTarget.contentEditable = false;
+                    evt.currentTarget.draggable = true;
+
+                    if (evt.currentTarget.textContent == "") {
+                        evt.currentTarget.parentNode.removeChild(evt.currentTarget);
+                    }
+
+                }
+            )
+
+
+            newPostIt.addEventListener("dragstart",
+                function(evt) {
+                    dragElt = evt.currentTarget;
+                }
+            );
+
+            newPostIt.contentEditable = true;
+            newPostIt.focus();
+        }
+
+
+        var dropHandler = function(evt) {
+
+            evt.currentTarget.querySelector("ul").appendChild(dragElt);
+
+        }
+
+
+        var deleteOnDropHandler = function(evt) {
+
+            let confirmSuppr = confirm("êtes vous sur de vousloir supprimer ce PostIt?");
+
+            if (confirmSuppr) {
+                dragElt.parentNode.removeChild(dragElt);
+            }
+        }
+
+        var sauvegarder = function() {
+
+            localStorage.setItem("todo", document.querySelector("#toDo ul").innerHTML);
+            localStorage.setItem("done", document.querySelector("#Done ul").innerHTML);
+
+        }
+
+        var restaurer = function() {
+            let doneContent = localStorage.getItem("done");
+            let toDoContent = localStorage.getItem("todo");
+
+            if (doneContent != "") {
+                document.querySelector("#Done ul").innerHTML = doneContent;
+            }
+            if (toDoContent != "") {
+                document.querySelector("#toDo ul").innerHTML = toDoContent;
+            }
+
+
+
+            let postIts = document.querySelectorAll("main section li");
+
+            for (let i = 0; i < postIts.length; i++) {
+
+                postIts[i].addEventListener("mouseup",
+                    function(evt) {
+                        evt.currentTarget.draggable = false;
+                        evt.currentTarget.contentEditable = true;
+                        evt.currentTarget.focus();
+                    }
+                )
+                postIts[i].addEventListener("blur",
+                    function(evt) {
+                        evt.currentTarget.contentEditable = false;
+                        evt.currentTarget.draggable = true;
+
+                        if (evt.currentTarget.textContent == "") {
+                            evt.currentTarget.parentNode.removeChild(evt.currentTarget);
+                        }
+
+                    }
+                )
+
+
+                postIts[i].addEventListener("dragstart",
+                    function(evt) {
+                        dragElt = evt.currentTarget;
+                    }
+                );
+
+            }
+
+
+        }
+
+
+        var init = function() {
+
+
+            restaurer();
+
+            window.addEventListener("beforeunload", sauvegarder);
+
+            document.getElementById("ajouterBtn").addEventListener("click", addPostIt);
+
+
+            document.getElementById("Done").addEventListener("drop", dropHandler);
+            document.getElementById("Done").addEventListener("dragover",
+                function(e) {
+                    e.preventDefault();
+                }
+            );
+
+            document.getElementById("toDo").addEventListener("drop", dropHandler);
+            document.getElementById("toDo").addEventListener("dragover",
+                function(e) {
+                    e.preventDefault();
+                }
+            );
+
+
+
+            document.getElementById("poubelle").addEventListener("drop", deleteOnDropHandler);
+            document.getElementById("poubelle").addEventListener("dragover",
+                function(e) {
+                    e.preventDefault();
+                }
+            );
+
+        }
+
+
+        window.addEventListener("DOMContentLoaded", init);
+
+    </script>
 </head>
 
 <body>
@@ -16,20 +184,11 @@
         <section id="toDo">
             <h2>À faire</h2>
             <button id="ajouterBtn" class="material-icons">add_circle_outline</button>
-            <ul>
-                <li>test</li>
-                <li>test</li>
-                <li>test2</li>
-            </ul>
+            <ul></ul>
         </section>
         <section id="Done">
             <h2>Fait</h2>
-            <ul>
-                <li>test</li>
-                <li>test2</li>
-                <li>test</li>
-                <li>test2</li>
-            </ul>
+            <ul></ul>
         </section>
     </main>
     <span id='poubelle' class="material-icons">delete</span>
